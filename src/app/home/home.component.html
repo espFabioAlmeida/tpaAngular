@@ -1,0 +1,31 @@
+<div class="fundo">
+    <div class="container">
+        <div>
+            <h2>Informe a palca do seu veículo para realizar a quitação do débito</h2>
+        </div>
+        <div>
+            <form (ngSubmit) = "onSubmit(this.formulario)" [formGroup]="formulario">
+                <div class="row centralizar">
+                    <div class="col col-md-8 centralizar">
+                        <input type="text" class="form-control gigante" formControlName="placa" id="placa" 
+                        placeholder="AAA-1234" required> 
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-success botao" [disabled]="!formulario.valid"
+                    type="button"(click)="onClickNacional()">
+                        <img class="img_btn" src="../../assets/img/nacionalidade-brasil.png" alt="nacional" title="nacional"> 
+                        <p>VEÍCULO NACIONAL</p>                
+                    </button> 
+
+                    <button class="btn btn-success botao" [disabled]="!formulario.valid" 
+                    type="button"(click)="onClickInternacional()">
+                        <img class="img_btn" src="../../assets/img/nacionalidade-outros-paises.png" alt="nacional" title="nacional"> 
+                        <p>VÍCULO INTERNACIONAL</p>
+                    </button> 
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
