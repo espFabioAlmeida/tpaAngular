@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SobreComponent } from './sobre/sobre.component';
+import { ComoFuncionaComponent } from './como-funciona/como-funciona.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SobreComponent,
+    ComoFuncionaComponent
   ],
   imports: [
     BrowserModule,

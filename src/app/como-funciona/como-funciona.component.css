@@ -1,0 +1,30 @@
+.fundo
+{
+    background: url('../../assets/img/fundo-como-funciona.jpg') no-repeat center;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.titulo
+{
+    font-weight: bold;
+}
+
+.botao
+{
+    padding: 1.5% 2%;
+}
+
+.lado-a-lado
+{
+    display: flex;
+    margin: 20px;
+    width: auto; 
+    height: auto; 
+}
+
+.lado-a-lado-janela
+{
+    margin: 5%;
+}

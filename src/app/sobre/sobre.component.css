@@ -1,0 +1,16 @@
+.fundo
+{
+    background: url('../../assets/img/fundo-sobre.gif') no-repeat center;
+    text-align: justify;
+    padding: 10px;
+}
+
+.titulo
+{
+    font-weight: bold;
+}
+
+.botao
+{
+    padding: 1.5% 2%;
+}
