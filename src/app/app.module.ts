@@ -10,6 +10,7 @@ import { ComoFuncionaComponent } from './como-funciona/como-funciona.component';
 import { TarifaComponent } from './tarifa/tarifa.component';
 import { PontosPagamentoComponent } from './pontos-pagamento/pontos-pagamento.component';
 import { ContatoComponent } from './contato/contato.component';
+import { PagamentoComponent } from './pagamento/pagamento.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ContatoComponent } from './contato/contato.component';
     ComoFuncionaComponent,
     TarifaComponent,
     PontosPagamentoComponent,
-    ContatoComponent
+    ContatoComponent,
+    PagamentoComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { ComoFuncionaComponent } from './como-funciona/como-funciona.component';
 import { TarifaComponent } from './tarifa/tarifa.component';
 import { PontosPagamentoComponent } from './pontos-pagamento/pontos-pagamento.component';
 import { ContatoComponent } from './contato/contato.component';
+import { PagamentoComponent } from './pagamento/pagamento.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'tarifa', component: TarifaComponent},
   { path: 'pontos-pagamento', component: PontosPagamentoComponent},
   { path: 'contato', component: ContatoComponent},
+  { path: 'pagamento', component: PagamentoComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ]
 
