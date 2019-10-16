@@ -1,0 +1,11 @@
+.fundo
+{
+    background: url('../../assets/img/fundo-tarifa.gif') no-repeat center;
+    text-align: center;
+    padding: 10px;
+}
+
+.titulo
+{
+    font-weight: bold;
+}

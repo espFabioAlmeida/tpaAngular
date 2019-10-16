@@ -1,0 +1,29 @@
+<div class="fundo text-secondary">
+    <div class="container">
+        <div>
+            <h2 class="titulo">TARIFA</h2>
+        </div>
+        <p>                           
+            Segundo a Lei, os valores da TPA são estabelecidos em UFRM, que convertidos em reais 
+            variam de acordo com o tipo de veículo. Quando convertidos em reais, e havendo resultados 
+            em centavos, os valores serão arredondados:
+        </p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">VEÍCULO</th>
+                    <th scope="col">UFRM</th>
+                    <th scope="col">VALOR EM REAIS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tarifa of tarifas">
+                    <td>{{tarifa.veiculo}}</td>
+                    <td>{{tarifa.ufrm}}</td>
+                    <td>R$ {{tarifa.valor}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

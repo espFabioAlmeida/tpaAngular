@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SobreComponent } from './sobre/sobre.component';
 import { ComoFuncionaComponent } from './como-funciona/como-funciona.component';
+import { TarifaComponent } from './tarifa/tarifa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SobreComponent,
-    ComoFuncionaComponent
+    ComoFuncionaComponent,
+    TarifaComponent
   ],
   imports: [
     BrowserModule,
