@@ -9,6 +9,7 @@ import { SobreComponent } from './sobre/sobre.component';
 import { ComoFuncionaComponent } from './como-funciona/como-funciona.component';
 import { TarifaComponent } from './tarifa/tarifa.component';
 import { PontosPagamentoComponent } from './pontos-pagamento/pontos-pagamento.component';
+import { ContatoComponent } from './contato/contato.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PontosPagamentoComponent } from './pontos-pagamento/pontos-pagamento.co
     SobreComponent,
     ComoFuncionaComponent,
     TarifaComponent,
-    PontosPagamentoComponent
+    PontosPagamentoComponent,
+    ContatoComponent
   ],
   imports: [
     BrowserModule,

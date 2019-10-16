@@ -1,0 +1,48 @@
+<div class="fundo bg-success">
+    <div class="container">
+        <div>
+            <h2 class="titulo">CONTATO</h2>
+        </div>
+        <div>
+            <h5>Endereço: Av. Falcão, nº 1501 - Bairro Bombas (ao lado da Academia Praia Gym)</h5>
+            <h3>(47) 3363-9674</h3>
+
+            <p>
+                Segunda à Domingo, das 8:00h às 18:30h
+            </p>
+        </div>
+            <form (ngSubmit) = "onSubmit(this.formulario)" [(formGroup)]="formulario">
+                <div class="row">
+                    <div class="col col-md-6">                       
+                        <input type="text" class="form-control bg-primary text-white" 
+                        formControlName="nome" id="nome" placeholder="Nome" required> 
+                        <label class="text-white bg-danger" *ngIf="verificaCampo('nome')">*Campo Inválido</label>
+                    </div>
+
+                    <div class="col col-md-6">                       
+                        <input type="email" class="form-control bg-primary text-white" 
+                        formControlName="email" id="email" placeholder="Email" required> 
+                        <label class="text-white bg-danger" *ngIf="verificaCampo('email')">*Campo Inválido</label>
+                    </div>
+                </div>
+
+                <div>
+                    <textarea name="mensagem" id="mensagem" formControlName="mensagem" 
+                    cols="30" rows="10" placeholder="Mensagem" required
+                    class="form-control bg-primary text-white">
+                    </textarea>
+                    <label class="text-white bg-danger" *ngIf="verificaCampo('mensagem')">*Escreva uma mensagem</label>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary btn-lg botao" [disabled]="!formulario.valid"
+                    type="submit">                        
+                        Enviar                
+                    </button> 
+                </div>
+            </form>
+        <div>
+            
+        </div>
+    </div>
+</div>

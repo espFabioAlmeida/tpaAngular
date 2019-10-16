@@ -1,0 +1,40 @@
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+  }
+
+.fundo
+{
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.titulo
+{
+    font-weight: bold;
+}
+
+.botao
+{
+    margin: 2%
+}
+
+h2,h3,h5
+{
+    margin-top: 40px;
+}
+
+textarea
+{
+    margin: 20px 0px;
+    resize: none;
+}
