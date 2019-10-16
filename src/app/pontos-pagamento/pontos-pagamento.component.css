@@ -1,0 +1,38 @@
+.fundo
+{
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.titulo
+{
+    font-weight: bold;
+}
+
+.botao
+{
+    margin: 1% 1%;
+}
+
+.lado-a-lado
+{
+    display: flex;
+    margin: 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.lado-a-lado-janela
+{
+    float: left;
+    margin: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.img_pag
+{
+    margin: 1px;
+    max-width: 20%;
+}

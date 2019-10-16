@@ -1,0 +1,44 @@
+<div class="fundo bg-info">
+    <div class="container">
+        <div>
+            <h2 class="titulo">POSTOS DE PAGAMENTO</h2>
+        </div>
+
+        <button class="btn btn-outline-light botao" type="button"(click)="setPostosOficiais(true)"
+        [ngClass] = "{active: postosOficiais}">      
+            Postos Oficiais
+        </button> 
+
+        <button class="btn btn-outline-light botao" type="button"(click)="setPostosOficiais(false)"
+        [ngClass] = "{active: !postosOficiais}">      
+            Comércios Credenciados
+        </button> 
+
+        <div *ngIf="postosOficiais">
+            <div class="lado-a-lado">              
+                <div *ngFor="let ponto of pontosPagamento">
+                    <div class="lado-a-lado-janela" *ngIf="ponto.postoOficial">
+                        <h5>{{ponto.nome}}</h5>
+                        <p>{{ponto.endereco}}</p>
+                        <img *ngIf="ponto.cartao" class="img_pag" src="../../assets/img/forma-cartao.png" alt="cartao" title="cartao"> 
+                        <img *ngIf="ponto.dinheiro" class="img_pag" src="../../assets/img/forma-dinheiro.png" alt="dinheiro" title="dinheiro">
+                        <img *ngIf="ponto.toten" class="img_pag" src="../../assets/img/forma-totem.png" alt="autoatendimento" title="autoatendimento">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!postosOficiais">
+                <div class="lado-a-lado">              
+                    <div *ngFor="let ponto of pontosPagamento">
+                        <div class="lado-a-lado-janela" *ngIf="!ponto.postoOficial">
+                            <h5>{{ponto.nome}}</h5>
+                            <p>{{ponto.endereco}}</p>
+                            <img *ngIf="ponto.cartao" class="img_pag" src="../../assets/img/forma-cartao.png" alt="cartao" title="cartao"> 
+                            <img *ngIf="ponto.dinheiro" class="img_pag" src="../../assets/img/forma-dinheiro.png" alt="dinheiro" title="dinheiro">
+                            <img *ngIf="ponto.toten" class="img_pag" src="../../assets/img/forma-totem.png" alt="autoatendimento" title="autoatendimento">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

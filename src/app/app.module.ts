@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SobreComponent } from './sobre/sobre.component';
 import { ComoFuncionaComponent } from './como-funciona/como-funciona.component';
 import { TarifaComponent } from './tarifa/tarifa.component';
+import { PontosPagamentoComponent } from './pontos-pagamento/pontos-pagamento.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TarifaComponent } from './tarifa/tarifa.component';
     HomeComponent,
     SobreComponent,
     ComoFuncionaComponent,
-    TarifaComponent
+    TarifaComponent,
+    PontosPagamentoComponent
   ],
   imports: [
     BrowserModule,
