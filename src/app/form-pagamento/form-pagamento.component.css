@@ -21,3 +21,14 @@
     margin-right: auto;
     margin-top: 20px;
 }
+
+.centralizar
+{
+    float: center;
+    margin: auto;
+}
+
+form
+{
+    margin: 2% 0%;
+}
