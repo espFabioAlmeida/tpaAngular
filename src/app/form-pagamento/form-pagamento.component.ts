@@ -28,9 +28,20 @@ export class FormPagamentoComponent implements OnInit {
     this.endereco = new Cep();
   }
 
-  onSubmit()
+  submitBoleto()
   {
-    console.log(this.formularioBoleto.value);
+    if(this.formularioBoleto.valid)
+    {
+      console.log(this.formularioBoleto.value);
+    }
+  }
+
+  submitCredito()
+  {
+    if(this.formularioCredito.valid)
+    {
+      console.log(this.formularioCredito.value);
+    }
   }
 
   calculaValor()
