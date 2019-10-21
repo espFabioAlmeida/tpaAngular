@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   placa: Placa = new Placa();
   formulario: FormGroup;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
     {
       console.log("Veículo Nacional Recebido");
       console.log(this.formulario.value);
+      this.router.navigate(['/pagamento']); 
     }
   }
 
