@@ -1,0 +1,23 @@
+.fundo
+{
+    text-align: center;
+    padding: 10px;
+    justify-content: center;
+}
+
+.titulo
+{
+    font-weight: bold;
+}
+
+.placa
+{
+    padding: 2%;
+    font-size: 200%;
+    font-weight: bold;
+    max-width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}

@@ -11,6 +11,7 @@ import { TarifaComponent } from './tarifa/tarifa.component';
 import { PontosPagamentoComponent } from './pontos-pagamento/pontos-pagamento.component';
 import { ContatoComponent } from './contato/contato.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
+import { FormPagamentoComponent } from './form-pagamento/form-pagamento.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PagamentoComponent } from './pagamento/pagamento.component';
     TarifaComponent,
     PontosPagamentoComponent,
     ContatoComponent,
-    PagamentoComponent
+    PagamentoComponent,
+    FormPagamentoComponent
   ],
   imports: [
     BrowserModule,
