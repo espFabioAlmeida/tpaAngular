@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { CepService } from '../services/cep.service';
+import { Cep } from '../model/cep';
 
 @Component({
   selector: 'app-form-pagamento',
@@ -11,10 +13,14 @@ export class FormPagamentoComponent implements OnInit {
   formularioValor: FormGroup;
   formularioCredito: FormGroup;
   formularioBoleto: FormGroup;
+
   valorTaxas: any;
   valorTaxasTexto: String;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder) { }
+  endereco: Cep;
+
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
+    private cepService: CepService) { }
 
   ngOnInit() {
     this.iniciaFormulario();
@@ -92,8 +98,27 @@ export class FormPagamentoComponent implements OnInit {
       
       cep: [null, [Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(8)],],     
+        Validators.maxLength(8)],],  
+        
+      logradouro: [null, [Validators.required,],], 
+      cidade: [null, [Validators.required,],], 
+      bairro: [null, [Validators.required,],], 
+      estado: [null, [Validators.required,],], 
     })
+  }
+
+  verificaCep()
+  {
+    this.endereco = new Cep();
+    if(this.formularioBoleto.value.cep != null) //Verifica se tem algo escrito
+    {
+      this.formularioBoleto.value.cep = this.formularioBoleto.value.cep.replace(/\D/g, ''); //Remove qualquer caracter que não seja dígito
+      if(this.formularioBoleto.value.cep.length == 8) //Verifica se tem 8 letras
+      {
+        this.cepService.consultaCep(this.formularioBoleto.value.cep).subscribe(dados => this.endereco = dados); 
+        return;
+      }
+    }
   }
 
 }
