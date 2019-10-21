@@ -25,6 +25,12 @@ export class FormPagamentoComponent implements OnInit {
   ngOnInit() {
     this.iniciaFormulario();
     this.valorTaxas = 0;
+    this.endereco = new Cep();
+  }
+
+  onSubmit()
+  {
+    console.log(this.formularioBoleto.value);
   }
 
   calculaValor()
@@ -101,9 +107,9 @@ export class FormPagamentoComponent implements OnInit {
         Validators.maxLength(8)],],  
         
       logradouro: [null, [Validators.required,],], 
-      cidade: [null, [Validators.required,],], 
+      localidade: [null, [Validators.required,],], 
       bairro: [null, [Validators.required,],], 
-      estado: [null, [Validators.required,],], 
+      uf: [null, [Validators.required,],], 
     })
   }
 
@@ -115,10 +121,37 @@ export class FormPagamentoComponent implements OnInit {
       this.formularioBoleto.value.cep = this.formularioBoleto.value.cep.replace(/\D/g, ''); //Remove qualquer caracter que não seja dígito
       if(this.formularioBoleto.value.cep.length == 8) //Verifica se tem 8 letras
       {
-        this.cepService.consultaCep(this.formularioBoleto.value.cep).subscribe(dados => this.endereco = dados); 
+        this.cepService.consultaCep(this.formularioBoleto.value.cep).subscribe(dados => {
+          this.endereco = dados;
+ 
+          this.formularioBoleto.value.logradouro = this.endereco.logradouro;        
+          this.formularioBoleto.value.localidade = this.endereco.localidade;
+          this.formularioBoleto.value.bairro = this.endereco.bairro;
+          this.formularioBoleto.value.uf = this.endereco.uf;
+
+          this.formularioBoleto.get('logradouro').setValue(this.endereco.logradouro);
+          this.formularioBoleto.get('localidade').setValue(this.endereco.localidade);
+          this.formularioBoleto.get('bairro').setValue(this.endereco.bairro);
+          this.formularioBoleto.get('uf').setValue(this.endereco.uf);
+        }); 
         return;
       }
+      else this.apagaCamposCep()
     }
+    else this.apagaCamposCep();
+  }
+
+  apagaCamposCep()
+  {
+    this.formularioBoleto.value.logradouro = null;        
+    this.formularioBoleto.value.localidade = null;
+    this.formularioBoleto.value.bairro = null;
+    this.formularioBoleto.value.uf = null;
+
+    this.formularioBoleto.get('logradouro').setValue(null);
+    this.formularioBoleto.get('localidade').setValue(null);
+    this.formularioBoleto.get('bairro').setValue(null);
+    this.formularioBoleto.get('uf').setValue(null);
   }
 
 }

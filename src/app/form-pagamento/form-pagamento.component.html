@@ -119,7 +119,7 @@
                 </div>
             </form>
 
-            <form (ngSubmit) = "onSubmit(this.formularioBoleto)" [formGroup] = "formularioBoleto" 
+            <form (ngSubmit) = "onSubmit(this.formularioBoleto)" [(formGroup)] = "formularioBoleto" 
             *ngIf="formularioValor.value.formaPagamento == 'BOLETO'">
                 <div class="form-group row">
                     <div class="col col-md-10 centralizar">  
@@ -155,6 +155,7 @@
                         <label for="cep" class="control-label">Cep</label>                   
                         <input type="text" class="form-control" 
                         formControlName="cep" id="cep" placeholder="CEP" required
+                        (blur)="verificaCep()"
                         onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
                     </div>
                 </div>
@@ -162,33 +163,41 @@
                     <div class="col col-md-4 centralizar">     
                         <label for="logradouro" class="control-label">Logradouro</label>                   
                         <input type="text" class="form-control" 
-                        formControlName="logradouro" id="logradouro" 
-                        placeholder="Logradouro" required disabled>
+                        formControlName="logradouro"  id="logradouro" 
+                        placeholder="Logradouro" required readonly>
                     </div>
 
                     <div class="col col-md-4 centralizar">     
                         <label for="bairro" class="control-label">Bairro</label>                   
                         <input type="text" class="form-control" 
                         formControlName="bairro" id="bairro" 
-                        placeholder="Bairro" required disabled>
+                        placeholder="Bairro" required readonly>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col col-md-4 centralizar">     
-                        <label for="cidade" class="control-label">Cidade</label>                   
+                        <label for="localidade" class="control-label">Cidade</label>                   
                         <input type="text" class="form-control" 
-                        formControlName="cidade" id="cidade" 
-                        placeholder="Cidade" required disabled>
+                        formControlName="localidade" id="localidade" 
+                        placeholder="Cidade" required readonly>
                     </div>
 
                     <div class="col col-md-4 centralizar">     
-                        <label for="estado" class="control-label">Estado</label>                   
+                        <label for="uf" class="control-label">Estado</label>                   
                         <input type="text" class="form-control" 
-                        formControlName="estado" id="estado" 
-                        placeholder="Estado" required disabled>
+                        formControlName="uf" id="uf" 
+                        placeholder="Estado" required readonly>
                     </div>
                 </div>
+
+                <button class="btn btn-success" type="submit">Salvar</button> 
+
             </form>
+
+            {{endereco.logradouro}}
+            {{endereco.localidade}}
+            {{endereco.bairro}}
+            {{endereco.uf}}
         </div>
     </div>

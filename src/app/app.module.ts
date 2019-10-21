@@ -12,6 +12,7 @@ import { PontosPagamentoComponent } from './pontos-pagamento/pontos-pagamento.co
 import { ContatoComponent } from './contato/contato.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { FormPagamentoComponent } from './form-pagamento/form-pagamento.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormPagamentoComponent } from './form-pagamento/form-pagamento.componen
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
