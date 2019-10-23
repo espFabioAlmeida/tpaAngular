@@ -48,9 +48,5 @@ form
 
 .botao
 {
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-top: 5px;
-    max-width: 500px;
-    max-height: 150px;
+    margin: 1% auto;
 }
