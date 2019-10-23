@@ -1,229 +1,241 @@
 <div class="fundo text-white bg-warning">
-        <div class="container">          
-            <div>
-                <p class="placa bg-dark">
-                    PWL2485
-                </p>
-            </div>    
-            
-            <div>
-                <h2 class="titulo">ISENTO ?</h2>
-                <p>
-                    Não
-                </p>
-            </div>
-
-            <div>
-                <h2 class="titulo">CLASSIFICAÇÃO</h2>
-                <p>
-                    1 - AUTOMOVEL\REBOQUE
-                </p>
-            </div>
-
-            <form [formGroup]="formularioValor">
-
-                <div>
-                    <h2 class="titulo">QUANTIDADE DE PASSAGENS</h2>
-                    <p>
-                        Nenhuma
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="titulo">QUANTIDADE DE TAXAS</h2>
-                    <div class="form-group col-md-2 centralizar">
-                        <input type="number" number class="form-control" formControlName="taxas" id="taxas" 
-                        placeholder="0" (blur)="calculaValor()" 
-                        required onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
-                    </div>
-
-                    <p>
-                        R${{valorTaxasTexto}}
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="titulo">FORMA DE PAGAMENTO</h2>
-                    <div class="form-group col-md-4 centralizar">
-                        <select id="formaPagamento" class="form-control" formControlName="formaPagamento">
-                            <option value="SELECIONE">Selecione</option>
-                            <option value="BOLETO">Boleto</option>
-                            <option value="CREDITO">Crédito</option>
-                        </select>
-                    </div>
-                </div>
-            </form>
-
-            <form (ngSubmit) = "onSubmit(this.formularioCredito)" [formGroup] = "formularioCredito" 
-            *ngIf="formularioValor.value.formaPagamento == 'CREDITO'">
-                <div class="form-group row">
-                    <div class="col col-md-10 centralizar">  
-                        <label for="titular" class="control-label">Titular</label>                      
-                        <input type="text" class="form-control" 
-                        formControlName="titular" id="titular" placeholder="Titular (Como impresso no cartão)" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col col-md-4 centralizar">  
-                        <label for="cartao" class="control-label">Número do Cartão</label>                     
-                        <input type="text" class="form-control" 
-                        formControlName="cartao" id="cartao" placeholder="Número do Cartao" required
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
-                    </div>
-
-                    <div class="col col-md-4 centralizar">     
-                        <label for="codigo" class="control-label">CVV</label>                   
-                        <input type="text" class="form-control" 
-                        formControlName="codigo" id="codigo" placeholder="CVV" required
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
-                    </div>
-                </div>                
-
-                <div class="form-group row">
-                    <div class="form-group col-md-4 centralizar">
-                        <label for="mesVencimento" class="control-label">Mês do Vencimento</label> 
-                        <select id="mesVencimento" class="form-control" formControlName="mesVencimento">
-                            <option value="01">01-Janeiro</option>
-                            <option value="02">02-Fevereiro</option>
-                            <option value="03">03-Março</option>
-                            <option value="04">04-Abril</option>
-                            <option value="05">05-Maio</option>
-                            <option value="06">06-Junho</option>
-                            <option value="07">07-Julho</option>
-                            <option value="08">08-Agosto</option>
-                            <option value="09">09-Setembro</option>
-                            <option value="10">10-Outubro</option>
-                            <option value="11">11-Novembro</option>
-                            <option value="12">12-Dezembro</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-md-4 centralizar">
-                        <label for="anoVencimento" class="control-label">Ano do Vencimento</label> 
-                        <select id="anoVencimento" class="form-control" formControlName="anoVencimento">
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                            <option value="2025">2025</option>
-                            <option value="2026">2026</option>
-                            <option value="2027">2027</option>
-                            <option value="2028">2028</option>
-                            <option value="2029">2029</option>
-                            <option value="2030">2030</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button class="btn btn-success btn-lg" [disabled]="!formularioCredito.valid" type="button" 
-                (click)="submitCredito()">Salvar</button> 
-            </form>
-
-            <form (ngSubmit) = "onSubmit(this.formularioBoleto)" [(formGroup)] = "formularioBoleto" 
-            *ngIf="formularioValor.value.formaPagamento == 'BOLETO'">
-                <div class="form-group row">
-                    <div class="col col-md-10 centralizar">  
-                        <label for="nome" class="control-label">Nome</label>                      
-                        <input type="text" class="form-control" 
-                        formControlName="nome" id="nome" placeholder="Nome Completo" required>
-                    </div>
-                </div>
-                
-                <div class="form-group row">
-                    <div class="col col-md-4 centralizar">  
-                        <label for="cpfCnpf" class="control-label">CPF/CNPJ</label>                     
-                        <input type="text" class="form-control" 
-                        formControlName="cpfCnpf" id="cpfCnpf" placeholder="CNPJ/CPF" required
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
-                    </div>
-
-                    <div class="col col-md-4 centralizar">     
-                        <label for="email" class="control-label">E-mail</label>                   
-                        <input type="email" class="form-control" 
-                        formControlName="email" id="email" placeholder="email@email.com.br" required>
-                    </div>
-                </div>                
-
-                <div class="form-group row">
-                    <div class="col col-md-4 centralizar">     
-                        <label for="telefone" class="control-label">Telefone</label>                   
-                        <input type="text" class="form-control" 
-                        formControlName="telefone" id="telefone" placeholder="DDD+telefone" required>
-                    </div>
-
-                    <div class="col col-md-4 centralizar">     
-                        <label for="cep" class="control-label">Cep</label>                   
-                        <input type="text" class="form-control" 
-                        formControlName="cep" id="cep" placeholder="CEP" required
-                        (blur)="verificaCep()"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col col-md-4 centralizar">     
-                        <label for="logradouro" class="control-label">Logradouro</label>                   
-                        <input type="text" class="form-control" 
-                        formControlName="logradouro"  id="logradouro" 
-                        placeholder="Logradouro" required readonly>
-                    </div>
-
-                    <div class="col col-md-4 centralizar">     
-                        <label for="bairro" class="control-label">Bairro</label>                   
-                        <input type="text" class="form-control" 
-                        formControlName="bairro" id="bairro" 
-                        placeholder="Bairro" required readonly>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col col-md-4 centralizar">     
-                        <label for="localidade" class="control-label">Cidade</label>                   
-                        <input type="text" class="form-control" 
-                        formControlName="localidade" id="localidade" 
-                        placeholder="Cidade" required readonly>
-                    </div>
-
-                    <div class="col col-md-4 centralizar">     
-                        <label for="uf" class="control-label">Estado</label>                   
-                        <input type="text" class="form-control" 
-                        formControlName="uf" id="uf" 
-                        placeholder="Estado" required readonly>
-                    </div>
-                </div>
-
-                <button class="btn btn-success btn-lg" [disabled]="!formularioBoleto.valid" type="button" 
-                (click)="submitBoleto()">Salvar</button> 
-
-            </form>
-
-
-            <img class="img_pag" src="../../assets/img/bandeiras.png" alt="bandeiras" title="bandeiras"> 
-            <p class="negrito">Aceitamos cartão de crédito e boleto</p>
-
-            <img class="img_seguro" src="../../assets/img/site_seguro.png" alt="seguro" 
-                title="seguro"> 
-
-            <hr>
-
-            <div class="lado-a-lado">
-                <div class="lado-a-lado-janela">
-                    <a href="https://www.bombinhas.sc.gov.br/cms/pagina/ver/codMapaItem/53478#.VKFZrv9gAA"
-                    target="_blank">
-                        <img class="img_logo" src="../assets/img/tpa-bombinhas.png" alt="tpa" 
-                        title="tpa">                                   
-                    </a>  
-                </div>
-                <div class="lado-a-lado-janela">
-                    <a href="https://www.bombinhas.sc.gov.br/cms/pagina/ver/codMapaItem/53478#.VKFZrv9gAA"
-                    target="_blank">                        
-                        <p class="textoLink negrito">
-                            Quer entender melhor o que significa a TPA? clique aqui e saiba mais...       
-                        </p>                           
-                    </a>  
-                </div>               
-            </div>    
-        </div>
+    <div class="container text-dark" *ngIf="!veiculo.veiculoNacional">  
+        <h4>Pago sólo está disponible para los vehículos brasileños.</h4>
+        <p>
+            O pagamento através desta plataforma é permitida somente para veículos brasileiros.           
+        </p>
     </div>
+    <div class="container" *ngIf="veiculo.veiculoNacional">          
+        <div>
+            <p class="placa bg-dark">
+                {{veiculo.placa}}
+            </p>
+        </div>    
+        
+        <div>
+            <h2 class="titulo">ISENTO ?</h2>
+            <p *ngIf="veiculo.isento">
+                Sim
+            </p>
+            <p *ngIf="!veiculo.isento">
+                Não
+            </p>
+        </div>
+
+        <div>
+            <h2 class="titulo">CLASSIFICAÇÃO</h2>
+            <p>
+                {{veiculo.classificacao}}
+            </p>
+        </div>
+
+        <form [formGroup]="formularioValor">
+
+            <div>
+                <h2 class="titulo">QUANTIDADE DE PASSAGENS</h2>
+                <p *ngIf="veiculo.passagens == 0">
+                    Nenhuma
+                </p>
+                <p *ngIf="veiculo.passagens > 0">
+                    {{veiculo.passagens}}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="titulo">QUANTIDADE DE TAXAS</h2>
+                <div class="form-group col-md-2 centralizar">
+                    <input type="number" number class="form-control" formControlName="taxas" id="taxas" 
+                    placeholder="0" (blur)="calculaValor()" 
+                    required onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
+                </div>
+
+                <p>
+                    R${{valorTaxasTexto}}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="titulo">FORMA DE PAGAMENTO</h2>
+                <div class="form-group col-md-4 centralizar">
+                    <select id="formaPagamento" class="form-control" formControlName="formaPagamento">
+                        <option value="SELECIONE">Selecione</option>
+                        <option value="BOLETO">Boleto</option>
+                        <option value="CREDITO">Crédito</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <form (ngSubmit) = "onSubmit(this.formularioCredito)" [formGroup] = "formularioCredito" 
+        *ngIf="formularioValor.value.formaPagamento == 'CREDITO'">
+            <div class="form-group row">
+                <div class="col col-md-10 centralizar">  
+                    <label for="titular" class="control-label">Titular</label>                      
+                    <input type="text" class="form-control" 
+                    formControlName="titular" id="titular" placeholder="Titular (Como impresso no cartão)" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col col-md-4 centralizar">  
+                    <label for="cartao" class="control-label">Número do Cartão</label>                     
+                    <input type="text" class="form-control" 
+                    formControlName="cartao" id="cartao" placeholder="Número do Cartao" required
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
+                </div>
+
+                <div class="col col-md-4 centralizar">     
+                    <label for="codigo" class="control-label">CVV</label>                   
+                    <input type="text" class="form-control" 
+                    formControlName="codigo" id="codigo" placeholder="CVV" required
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
+                </div>
+            </div>                
+
+            <div class="form-group row">
+                <div class="form-group col-md-4 centralizar">
+                    <label for="mesVencimento" class="control-label">Mês do Vencimento</label> 
+                    <select id="mesVencimento" class="form-control" formControlName="mesVencimento">
+                        <option value="01">01-Janeiro</option>
+                        <option value="02">02-Fevereiro</option>
+                        <option value="03">03-Março</option>
+                        <option value="04">04-Abril</option>
+                        <option value="05">05-Maio</option>
+                        <option value="06">06-Junho</option>
+                        <option value="07">07-Julho</option>
+                        <option value="08">08-Agosto</option>
+                        <option value="09">09-Setembro</option>
+                        <option value="10">10-Outubro</option>
+                        <option value="11">11-Novembro</option>
+                        <option value="12">12-Dezembro</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4 centralizar">
+                    <label for="anoVencimento" class="control-label">Ano do Vencimento</label> 
+                    <select id="anoVencimento" class="form-control" formControlName="anoVencimento">
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn btn-success btn-lg" [disabled]="!formularioCredito.valid" type="button" 
+            (click)="submitCredito()">Salvar</button> 
+        </form>
+
+        <form (ngSubmit) = "onSubmit(this.formularioBoleto)" [(formGroup)] = "formularioBoleto" 
+        *ngIf="formularioValor.value.formaPagamento == 'BOLETO'">
+            <div class="form-group row">
+                <div class="col col-md-10 centralizar">  
+                    <label for="nome" class="control-label">Nome</label>                      
+                    <input type="text" class="form-control" 
+                    formControlName="nome" id="nome" placeholder="Nome Completo" required>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col col-md-4 centralizar">  
+                    <label for="cpfCnpf" class="control-label">CPF/CNPJ</label>                     
+                    <input type="text" class="form-control" 
+                    formControlName="cpfCnpf" id="cpfCnpf" placeholder="CNPJ/CPF" required
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
+                </div>
+
+                <div class="col col-md-4 centralizar">     
+                    <label for="email" class="control-label">E-mail</label>                   
+                    <input type="email" class="form-control" 
+                    formControlName="email" id="email" placeholder="email@email.com.br" required>
+                </div>
+            </div>                
+
+            <div class="form-group row">
+                <div class="col col-md-4 centralizar">     
+                    <label for="telefone" class="control-label">Telefone</label>                   
+                    <input type="text" class="form-control" 
+                    formControlName="telefone" id="telefone" placeholder="DDD+telefone" required>
+                </div>
+
+                <div class="col col-md-4 centralizar">     
+                    <label for="cep" class="control-label">Cep</label>                   
+                    <input type="text" class="form-control" 
+                    formControlName="cep" id="cep" placeholder="CEP" required
+                    (blur)="verificaCep()"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col col-md-4 centralizar">     
+                    <label for="logradouro" class="control-label">Logradouro</label>                   
+                    <input type="text" class="form-control" 
+                    formControlName="logradouro"  id="logradouro" 
+                    placeholder="Logradouro" required readonly>
+                </div>
+
+                <div class="col col-md-4 centralizar">     
+                    <label for="bairro" class="control-label">Bairro</label>                   
+                    <input type="text" class="form-control" 
+                    formControlName="bairro" id="bairro" 
+                    placeholder="Bairro" required readonly>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col col-md-4 centralizar">     
+                    <label for="localidade" class="control-label">Cidade</label>                   
+                    <input type="text" class="form-control" 
+                    formControlName="localidade" id="localidade" 
+                    placeholder="Cidade" required readonly>
+                </div>
+
+                <div class="col col-md-4 centralizar">     
+                    <label for="uf" class="control-label">Estado</label>                   
+                    <input type="text" class="form-control" 
+                    formControlName="uf" id="uf" 
+                    placeholder="Estado" required readonly>
+                </div>
+            </div>
+
+            <button class="btn btn-success btn-lg" [disabled]="!formularioBoleto.valid" type="button" 
+            (click)="submitBoleto()">Salvar</button> 
+
+        </form>
+
+
+        <img class="img_pag" src="../../assets/img/bandeiras.png" alt="bandeiras" title="bandeiras"> 
+        <p class="negrito">Aceitamos cartão de crédito e boleto</p>
+
+        <img class="img_seguro" src="../../assets/img/site_seguro.png" alt="seguro" 
+            title="seguro"> 
+
+        <hr>
+
+        <div class="lado-a-lado">
+            <div class="lado-a-lado-janela">
+                <a href="https://www.bombinhas.sc.gov.br/cms/pagina/ver/codMapaItem/53478#.VKFZrv9gAA"
+                target="_blank">
+                    <img class="img_logo" src="../assets/img/tpa-bombinhas.png" alt="tpa" 
+                    title="tpa">                                   
+                </a>  
+            </div>
+            <div class="lado-a-lado-janela">
+                <a href="https://www.bombinhas.sc.gov.br/cms/pagina/ver/codMapaItem/53478#.VKFZrv9gAA"
+                target="_blank">                        
+                    <p class="textoLink negrito">
+                        Quer entender melhor o que significa a TPA? clique aqui e saiba mais...       
+                    </p>                           
+                </a>  
+            </div>               
+        </div>    
+    </div>
+</div>

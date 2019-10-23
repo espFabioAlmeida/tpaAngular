@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CepService } from '../services/cep.service';
 import { Cep } from '../model/cep';
+import { Veiculo } from '../model/veiculo';
+import { VeiculoService } from '../services/veiculo.service';
 
 @Component({
   selector: 'app-form-pagamento',
@@ -19,13 +21,16 @@ export class FormPagamentoComponent implements OnInit {
 
   endereco: Cep;
 
+  veiculo: Veiculo = new Veiculo();
+
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
-    private cepService: CepService) { }
+    private cepService: CepService, private veiculoService: VeiculoService) { }
 
   ngOnInit() {
     this.iniciaFormulario();
     this.valorTaxas = 0;
     this.endereco = new Cep();
+    this.veiculo = this.veiculoService.getVeiculoConsultado();
   }
 
   submitBoleto()
