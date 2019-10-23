@@ -11,7 +11,10 @@
     font-weight: bold;
 }
 
-
+.botao
+{
+    margin: auto;
+}
 
 .lado-a-lado
 {
@@ -24,7 +27,7 @@
 .lado-a-lado-janela
 {
     float: left;
-    margin: 2%;
+    margin: auto;
     text-align: center;
     justify-content: center;
     max-width: 500px;
