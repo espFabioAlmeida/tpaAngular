@@ -5,6 +5,7 @@ import { CepService } from '../services/cep.service';
 import { Cep } from '../model/cep';
 import { Veiculo } from '../model/veiculo';
 import { VeiculoService } from '../services/veiculo.service';
+import { TarifaService } from '../services/tarifa.service';
 
 @Component({
   selector: 'app-form-pagamento',
@@ -23,14 +24,21 @@ export class FormPagamentoComponent implements OnInit {
 
   veiculo: Veiculo = new Veiculo();
 
+  tarifa: any;
+
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
-    private cepService: CepService, private veiculoService: VeiculoService) { }
+    private cepService: CepService, private veiculoService: VeiculoService,
+    private tarifaService: TarifaService) { }
 
   ngOnInit() {
     this.iniciaFormulario();
     this.valorTaxas = 0;
     this.endereco = new Cep();
     this.veiculo = this.veiculoService.getVeiculoConsultado();
+    const valor: any = this.tarifaService.getValor(this.veiculo.classificacao);
+
+    this.tarifa = parseFloat(valor);
+    //console.log("Tarifa lida " + this.tarifa);
   }
 
   submitBoleto()
@@ -52,7 +60,7 @@ export class FormPagamentoComponent implements OnInit {
   calculaValor()
   {
     //Calcula o valor da compra (multiplica por 100 para aplicar mascara
-    this.valorTaxas = this.formularioValor.value.taxas * 27.50 * 100; 
+    this.valorTaxas = this.formularioValor.value.taxas * this.tarifa * 100; 
 
     //Aplicação de máscara
     if(!(this.valorTaxas % 10) && !(this.valorTaxas % 100)) //Valor cheio
