@@ -2,10 +2,11 @@
 {
     background: url('../../assets/img/fundo-tarifa.gif') no-repeat center;
     text-align: center;
-    padding: 10px;
+    margin: auto;
 }
 
 .titulo
 {
     font-weight: bold;
+    margin: auto;
 }
