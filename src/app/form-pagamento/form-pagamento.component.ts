@@ -6,6 +6,8 @@ import { Cep } from '../model/cep';
 import { Veiculo } from '../model/veiculo';
 import { VeiculoService } from '../services/veiculo.service';
 import { TarifaService } from '../services/tarifa.service';
+import { Pagamento } from '../model/pagamento';
+import { PagamentoService } from '../services/pagamento.service';
 
 @Component({
   selector: 'app-form-pagamento',
@@ -16,6 +18,8 @@ export class FormPagamentoComponent implements OnInit {
   formularioValor: FormGroup;
   formularioCredito: FormGroup;
   formularioBoleto: FormGroup;
+
+  pagamento: Pagamento = new Pagamento;
 
   valorTaxas: any;
   valorTaxasTexto: String;
@@ -28,7 +32,7 @@ export class FormPagamentoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
     private cepService: CepService, private veiculoService: VeiculoService,
-    private tarifaService: TarifaService) { }
+    private tarifaService: TarifaService, private pagamentoService: PagamentoService) { }
 
   ngOnInit() {
     this.iniciaFormulario();
@@ -46,6 +50,23 @@ export class FormPagamentoComponent implements OnInit {
     if(this.formularioBoleto.valid)
     {
       console.log(this.formularioBoleto.value);
+      this.pagamento.tipo = "BOLETO";
+      this.pagamento.nome = this.formularioBoleto.value.nome;
+      this.pagamento.cpfCnpj = this.formularioBoleto.value.cpfCnpf;
+      this.pagamento.email = this.formularioBoleto.value.email;
+      this.pagamento.telefone = this.formularioBoleto.value.telefone;
+      this.pagamento.cep = this.formularioBoleto.value.cep;
+      this.pagamento.logradouro = this.formularioBoleto.value.logradouro;
+      this.pagamento.localidade = this.formularioBoleto.value.localidade;
+      this.pagamento.bairro = this.formularioBoleto.value.bairro;
+      this.pagamento.complemento = this.formularioBoleto.value.complemento;
+
+      this.pagamento.veiculo = this.veiculo;
+      this.pagamento.taxas = this.formularioValor.value.taxas;
+      this.pagamento.valor = this.valorTaxas;
+
+      this.pagamentoService.enviarPagamento(this.pagamento);
+      this.pagamento = new Pagamento();
     }
   }
 
@@ -54,6 +75,19 @@ export class FormPagamentoComponent implements OnInit {
     if(this.formularioCredito.valid)
     {
       console.log(this.formularioCredito.value);
+      this.pagamento.tipo = "CREDITO";
+      this.pagamento.titular = this.formularioCredito.value.titular;
+      this.pagamento.cartao = this.formularioCredito.value.cartao;
+      this.pagamento.codigo = this.formularioCredito.value.codigo;
+      this.pagamento.vencimento = this.formularioCredito.value.mesVencimento + "/" + 
+        this.formularioCredito.value.anoVencimento;
+      
+      this.pagamento.veiculo = this.veiculo;
+      this.pagamento.taxas = this.formularioValor.value.taxas;
+      this.pagamento.valor = this.valorTaxas;
+
+      this.pagamentoService.enviarPagamento(this.pagamento);
+      this.pagamento = new Pagamento();
     }
   }
 
@@ -129,11 +163,12 @@ export class FormPagamentoComponent implements OnInit {
       cep: [null, [Validators.required,
         Validators.minLength(8),
         Validators.maxLength(8)],],  
+      
+      complemento: [null, [Validators.required]],
         
       logradouro: [null, [Validators.required,],], 
       localidade: [null, [Validators.required,],], 
       bairro: [null, [Validators.required,],], 
-      uf: [null, [Validators.required,],], 
     })
   }
 
@@ -149,14 +184,12 @@ export class FormPagamentoComponent implements OnInit {
           this.endereco = dados;
  
           this.formularioBoleto.value.logradouro = this.endereco.logradouro;        
-          this.formularioBoleto.value.localidade = this.endereco.localidade;
+          this.formularioBoleto.value.localidade = this.endereco.localidade + "/" + this.endereco.uf;
           this.formularioBoleto.value.bairro = this.endereco.bairro;
-          this.formularioBoleto.value.uf = this.endereco.uf;
 
           this.formularioBoleto.get('logradouro').setValue(this.endereco.logradouro);
-          this.formularioBoleto.get('localidade').setValue(this.endereco.localidade);
+          this.formularioBoleto.get('localidade').setValue(this.endereco.localidade + "/" + this.endereco.uf);
           this.formularioBoleto.get('bairro').setValue(this.endereco.bairro);
-          this.formularioBoleto.get('uf').setValue(this.endereco.uf);
         }); 
         return;
       }
