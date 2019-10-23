@@ -13,6 +13,7 @@ import { ContatoComponent } from './contato/contato.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { FormPagamentoComponent } from './form-pagamento/form-pagamento.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     PontosPagamentoComponent,
     ContatoComponent,
     PagamentoComponent,
-    FormPagamentoComponent
+    FormPagamentoComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
